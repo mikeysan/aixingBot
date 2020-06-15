@@ -1,0 +1,1 @@
+worker: python aixing_bot.py
