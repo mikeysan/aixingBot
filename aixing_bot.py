@@ -4,6 +4,7 @@
 
 import os
 import random
+import datetime
 
 import discord
 from discord.ext import commands
@@ -25,7 +26,7 @@ handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(me
 logger.addHandler(handler)
 
 
-client = commands.Bot(command_prefix='$')
+client = commands.Bot(command_prefix='$', description="A suuport Bot for NLB Clan", case_insensitive=True)
 
 
 @client.event
@@ -38,12 +39,20 @@ async def on_ready():
         f'{client.user} is connected to the following guild:\n'
         f'{guild.name}(id: {guild.id})'
     )
-    status = discord.Status.online
     channel = discord.utils.get(guild.channels, name="random-chat")
     wave = ":wave:"
-    # await client.change_presence(activity=activity, status=status)
-    # await client.send(f'Aweomeness has arrived in {channel}')
-    await channel.send(f'A Champion has arrived {wave}')
+    game = discord.Game(name = "$help")
+    await bot.change_presence(activity = game)
+
+    embed = discord.Embed(
+        title = f"{bot.user.name} Online!",
+        color = discord.color.from_rgb(255,191,0),
+        timestamp = datetime.datetime.now(datetime.timezone.utc)
+    )
+    embed.set_footer(
+        text = "I am Open Source. I am Skynet.",
+    )
+    await channel.send(embed = embed)
 
 
 # Allow a user with admin role the ability to create a channel using our bot

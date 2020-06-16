@@ -1,0 +1,5 @@
+*.env
+vbot
+vscode
+*.log
+pytest_cache
