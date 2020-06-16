@@ -1,5 +1,5 @@
 *.env
-vbot
-vscode
+*.vbot
+*.vscode
 *.log
 pytest_cache
