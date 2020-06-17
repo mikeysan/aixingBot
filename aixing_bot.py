@@ -42,10 +42,10 @@ async def on_ready():
     channel = discord.utils.get(guild.channels, name="chat")
     wave = ":wave:"
     game = discord.Game(name = "$help")
-    await bot.change_presence(activity = game)
+    await client.change_presence(activity = game)
 
     embed = discord.Embed(
-        title = f"{bot.user.name} Online!",
+        title = f"{client.user.name} Online!",
         color = discord.color.from_rgb(255,191,0),
         timestamp = datetime.datetime.now(datetime.timezone.utc)
     )
