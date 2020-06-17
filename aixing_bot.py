@@ -39,7 +39,7 @@ async def on_ready():
         f'{client.user} is connected to the following guild:\n'
         f'{guild.name}(id: {guild.id})'
     )
-    channel = discord.utils.get(guild.channels, name="random-chat")
+    channel = discord.utils.get(guild.channels, name="chat")
     wave = ":wave:"
     game = discord.Game(name = "$help")
     await bot.change_presence(activity = game)
