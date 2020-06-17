@@ -46,11 +46,11 @@ async def on_ready():
 
     embed = discord.Embed(
         title = f"{client.user.name} Online!",
-        color = discord.color.from_rgb(255,191,0),
+        colour = discord.Colour.from_rgb(255,191,0),
         timestamp = datetime.datetime.now(datetime.timezone.utc)
     )
     embed.set_footer(
-        text = "I am Open Source. I am Skynet.",
+        text = "I am Open Source. I am Skynet."
     )
     await channel.send(embed = embed)
 
