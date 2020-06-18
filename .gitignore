@@ -1,3 +1,4 @@
+*.md
 *.env
 *.vbot
 *.vscode
