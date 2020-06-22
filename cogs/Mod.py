@@ -12,7 +12,7 @@ class Mod(commands.Mod):
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, member: discord.Member, *, reason="No reason"):
         await member.kick(reason=reason)
-        await ctx.send(f"{member.mention} has been kicked by {ctx.author.mention}.  [{reason}])
+        await ctx.send(f"{member.mention} has been kicked by {ctx.author.mention}.[{reason}]")
 
 def setup(bot):
     bot.add_cog(Mod(bot))
