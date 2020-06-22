@@ -2,7 +2,7 @@
 # A discord bot created by Mikey San
 # This is mostly a tutorial project for use on my discord server.
 
-import os
+import os, sys
 import random
 import datetime
 
@@ -115,7 +115,8 @@ async def reload(ctx, cog):
         raise e
 
 # Load cogs
-for cog in os.listdir(".\\cogs"):
+paths = "./cogs/"
+for cog in os.listdir(paths):
     if cog.endswith(".py"):
         try:
             cog = f"cogs.{cog.replace('.py', '')}"
