@@ -26,24 +26,24 @@ handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(me
 logger.addHandler(handler)
 
 # We are using the Bot API to interact with discord.
-# Assign "client" to commands.Bot and set the commnd prefix to look for.
+# Assign "bot" to commands.Bot and set the commnd prefix to look for.
 # We have also set our commands to be case insensitive. this means $help or
 # $Help or even $helP will trigger the bot.
-client = commands.Bot(command_prefix='$', description="A support Bot for NLB Clan", case_insensitive=True)
+bot = commands.Bot(command_prefix='$', description="A support Bot for NLB Clan", case_insensitive=True)
 
 # Create an event that takes the on_ready function
 # This will do a few things once our bot goes live
-@client.event
+@bot.event
 async def on_ready():
     # Check that we are in the expected server.
-    for guild in client.guilds:
+    for guild in bot.guilds:
         if guild.name == GUILD:
             break
 
     # Print to terminal (log file) when we make a connection.
     # Also confirm the server name and ID we're connected to.
     print(
-        f'{client.user} is connected to the following guild:\n'
+        f'{bot.user} is connected to the following guild:\n'
         f'{guild.name}(id: {guild.id})'
     )
     # Send a message to the channel "chat" once we are connected.
@@ -53,12 +53,12 @@ async def on_ready():
     # Let's pretend the bot is playing the game of $help
     # # TODO: Add a help function that displays all the other commands available
     game = discord.Game(name = "$help")
-    await client.change_presence(activity = game)
+    await bot.change_presence(activity = game)
 
     # Create a discord embed instance.
     # Set title, colour and timestamp. ps. don't forget to import datetime module
     embed = discord.Embed(
-        title = f"{client.user.name} Online!",
+        title = f"{bot.user.name} Online!",
         colour = discord.Colour.from_rgb(255,191,0),
         url = https://github.com/mikeysan/aixingBot,
         timestamp = datetime.datetime.now(datetime.timezone.utc)
@@ -75,7 +75,7 @@ async def on_ready():
 # The bot also needs to have admin role assigned to it.
 # TODO: Assign aixing_bot admin role on server or find minimum permisison
 # TODO: needed to allow it create channels.
-@client.command(name='create-channel', help='Create a channel using create-channel followed by channel name')
+@bot.command(name='create-channel', help='Create a channel using create-channel followed by channel name')
 @commands.has_role('admin')
 async def create_channel(ctx, channel_name='bot-chat'):
     guild = ctx.guild
@@ -87,7 +87,7 @@ async def create_channel(ctx, channel_name='bot-chat'):
 # Add an error check to inform a user if they do not have permisison to run this command.
 # Normally, the error message is not shown to the user so there is no way for them to know why it didn't work
 # This event ensures that they know why.
-@client.event
+@bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.errors.CheckFailure):
         await ctx.send('You do not have the correct role for this command.')
@@ -95,12 +95,34 @@ async def on_command_error(ctx, error):
 
 # This command reads from an external file.
 # It displays random quotes from Star Trek when the $treky command is called
-@client.command(name='treky', help='Responds with random quote from Star Trek')
+@bot.command(name='treky', help='Responds with random quote from Star Trek')
 async def treky(ctx):
     with open("stquotes.txt", "r") as f:
         lines = f.readlines()
         response = random.choice(lines)
     await ctx.send(response)
 
+# Reload cogs
+@bot.commands()
+@commands.is_owner()
+async def reload(ctx, cog):
+    try:
+        bot.unload_extensions(f'cogs.{cog})
+        bot.load_extensions(f'cogs.{cog})
+        ctx.send(f"{cog} reloaded successfully")
+    except Exception as e:
+        print(f"{cog} can not be loaded:")
+        raise e
+
+# Load cogs
+for cog in os.listdir(".\\cogs"):
+    if cog.endswith(".py"):
+        try:
+            cog = f"cogs.{cog.replace('.py', '')}"
+            bot.load_extension(cog)
+        except Exception as e:
+            print(f"{cog} can not be loaded:")
+            raise e
+
 # Finally, authenticate with discord and let's get cracking.
-client.run(TOKEN)
+bot.run(TOKEN)
