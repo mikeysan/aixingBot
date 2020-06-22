@@ -60,7 +60,7 @@ async def on_ready():
     embed = discord.Embed(
         title = f"{bot.user.name} Online!",
         colour = discord.Colour.from_rgb(255,191,0),
-        url = https://github.com/mikeysan/aixingBot,
+        url = "https://github.com/mikeysan/aixingBot",
         timestamp = datetime.datetime.now(datetime.timezone.utc)
     )
     # Set a footer using the embed instance.
