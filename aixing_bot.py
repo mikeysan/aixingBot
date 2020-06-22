@@ -103,7 +103,7 @@ async def treky(ctx):
     await ctx.send(response)
 
 # Reload cogs
-@bot.commands()
+@bot.command()
 @commands.is_owner()
 async def reload(ctx, cog):
     try:
