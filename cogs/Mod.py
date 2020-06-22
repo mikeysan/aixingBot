@@ -2,8 +2,9 @@ import discord
 from discord.ext import commands
 
 # Define class Mod(commands.Cog):
-    """Command to kick someone from server using kick"""
-class Mod(commands.Cog):
+class Mod(commands.Mod):
+    """kick users command for Mod."""
+
     def __init__(self, bot):
         self.bot = bot
 
