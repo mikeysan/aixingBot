@@ -2,13 +2,13 @@
 # A discord bot created by Mikey San
 # This is mostly a tutorial project for use on my discord server.
 
-import os, sys
+import os
 import random
+import logging
 import datetime
 
 import discord
 from discord.ext import commands
-from discord import activity, message
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -16,7 +16,6 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 
-import logging
 
 # Setup logging to a file called discord.log.
 logger = logging.getLogger('discord')
@@ -29,7 +28,9 @@ logger.addHandler(handler)
 # Assign "bot" to commands.Bot and set the commnd prefix to look for.
 # We have also set our commands to be case insensitive. this means $help or
 # $Help or even $helP will trigger the bot.
-bot = commands.Bot(command_prefix='$', description="A support Bot for NLB Clan", case_insensitive=True)
+bot = commands.Bot(command_prefix='$',
+                   description="A support Bot for NLB Clan", 
+                   case_insensitive=True)
 
 # Create an event that takes the on_ready function
 # This will do a few things once our bot goes live
