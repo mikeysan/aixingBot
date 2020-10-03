@@ -36,6 +36,9 @@ bot = commands.Bot(command_prefix='$',
 # This will do a few things once our bot goes live
 @bot.event
 async def on_ready():
+    '''
+        Description:
+    '''
     # Let's pretend the bot is playing the game of $help
     # # TODO: Add a help function that displays all the other commands available
     game = discord.Game(name = "$help")
@@ -55,7 +58,7 @@ async def on_ready():
         # Send a message to the channel "chat" once we are connected.
         # So we can see that we are live there too.
         channel = discord.utils.get(guild.channels, name="chat")
-        wave = ":wave:"
+        # wave = ":wave:"
 
 
         # Create a discord embed instance.
@@ -100,6 +103,9 @@ async def on_command_error(ctx, error):
 # It displays random quotes from Star Trek when the $treky command is called
 @bot.command(name='treky', help='Responds with random quote from Star Trek')
 async def treky(ctx):
+    '''
+        Description:
+    '''
     with open("stquotes.txt", "r") as f:
         lines = f.readlines()
         response = random.choice(lines)
@@ -109,6 +115,9 @@ async def treky(ctx):
 @bot.command()
 @commands.is_owner()
 async def reload(ctx, cog):
+    '''
+        Description:
+    '''
     try:
         bot.unload_extensions(f"cogs.{cog}")
         bot.load_extensions(f"cogs.{cog}")
@@ -118,14 +127,14 @@ async def reload(ctx, cog):
         raise e
 
 # Load cogs
-paths = "./cogs/"
-for cog in os.listdir(paths):
-    if cog.endswith(".py"):
+cogPath = "./cogs/"
+for cogFile in os.listdir(cogPath):
+    if cogFile.endswith(".py"):
         try:
-            cog = f"cogs.{cog.replace('.py', '')}"
-            bot.load_extension(cog)
+            cogFile = f"cogs.{cogFile.replace('.py', '')}"
+            bot.load_extension(cogFile)
         except Exception as e:
-            print(f"{cog} can not be loaded:")
+            print(f"{cogFile} can not be loaded:")
             raise e
 
 # Finally, authenticate with discord and let's get cracking.
