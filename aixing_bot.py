@@ -35,40 +35,42 @@ bot = commands.Bot(command_prefix='$', description="A support Bot for NLB Clan",
 # This will do a few things once our bot goes live
 @bot.event
 async def on_ready():
-    # Check that we are in the expected server.
-    for guild in bot.guilds:
-        if guild.name == GUILD:
-            break
-
-    # Print to terminal (log file) when we make a connection.
-    # Also confirm the server name and ID we're connected to.
-    print(
-        f'{bot.user} is connected to the following guild:\n'
-        f'{guild.name}(id: {guild.id})'
-    )
-    # Send a message to the channel "chat" once we are connected.
-    # So we can see that we are live there too.
-    channel = discord.utils.get(guild.channels, name="chat")
-    wave = ":wave:"
     # Let's pretend the bot is playing the game of $help
     # # TODO: Add a help function that displays all the other commands available
     game = discord.Game(name = "$help")
     await bot.change_presence(activity = game)
 
-    # Create a discord embed instance.
-    # Set title, colour and timestamp. ps. don't forget to import datetime module
-    embed = discord.Embed(
-        title = f"{bot.user.name} Online!",
-        colour = discord.Colour.from_rgb(255,191,0),
-        url = "https://github.com/mikeysan/aixingBot",
-        timestamp = datetime.datetime.now(datetime.timezone.utc)
-    )
-    # Set a footer using the embed instance.
-    embed.set_footer(
-        text = "I am Open Source. I am Skynet."
-    )
-    # Send our embeded content to the channel.
-    await channel.send(embed = embed)
+    # Check that we are in the expected server.
+    for guild in bot.guilds:
+        if guild.name == GUILD:
+            break
+
+        # Print to terminal (log file) when we make a connection.
+        # Also confirm the server name and ID we're connected to.
+        print(
+            f'{bot.user} is connected to the following guild:\n'
+            f'{guild.name}(id: {guild.id})'
+        )
+        # Send a message to the channel "chat" once we are connected.
+        # So we can see that we are live there too.
+        channel = discord.utils.get(guild.channels, name="chat")
+        wave = ":wave:"
+
+
+        # Create a discord embed instance.
+        # Set title, colour and timestamp. ps. don't forget to import datetime module
+        embed = discord.Embed(
+            title = f"{bot.user.name} Online!",
+            colour = discord.Colour.from_rgb(255,191,0),
+            url = "https://github.com/mikeysan/aixingBot",
+            timestamp = datetime.datetime.now(datetime.timezone.utc)
+        )
+        # Set a footer using the embed instance.
+        embed.set_footer(
+            text = "I am Open Source. I am Skynet."
+        )
+        # Send our embeded content to the channel.
+        await channel.send(embed = embed)
 
 
 # Allow a user with admin role the ability to create a channel using our bot
