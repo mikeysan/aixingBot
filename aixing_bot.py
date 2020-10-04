@@ -119,8 +119,8 @@ async def reload(ctx, cog):
         Description:
     '''
     try:
-        bot.unload_extensions(f"cogs.{cog}")
-        bot.load_extensions(f"cogs.{cog}")
+        bot.unload_extension(f"cogs.{cog}")
+        bot.load_extension(f"cogs.{cog}")
         ctx.send(f"{cog} reloaded successfully")
     except Exception as e:
         print(f"{cog} can not be loaded:")
