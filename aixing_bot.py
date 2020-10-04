@@ -111,31 +111,31 @@ async def treky(ctx):
         response = random.choice(lines)
     await ctx.send(response)
 
-# # Reload cogs
-# @bot.command()
-# @commands.is_owner()
-# async def reload(ctx, cog):
-#     '''
-#         Description:
-#     '''
-#     try:
-#         bot.unload_extension(f"cogs.{cog}")
-#         bot.load_extension(f"cogs.{cog}")
-#         ctx.send(f"{cog} reloaded successfully")
-#     except Exception as e:
-#         print(f"{cog} can not be loaded:")
-#         raise e
+# Reload cogs
+@bot.command()
+@commands.is_owner()
+async def reload(ctx, cog):
+    '''
+        Description:
+    '''
+    try:
+        bot.unload_extension(f"cogs.{cog}")
+        bot.load_extension(f"cogs.{cog}")
+        ctx.send(f"{cog} reloaded successfully")
+    except Exception as e:
+        print(f"{cog} can not be loaded:")
+        raise e
 
-# # Load cogs
-# cogPath = "./cogs/"
-# for cogFile in os.listdir(cogPath):
-#     if cogFile.endswith(".py"):
-#         try:
-#             cogFile = f"cogs.{cogFile.replace('.py', '')}"
-#             bot.load_extension(cogFile)
-#         except Exception as e:
-#             print(f"{cogFile} can not be loaded:")
-#             raise e
+# Load cogs
+cogPath = "./cogs/"
+for cogFile in os.listdir(cogPath):
+    if cogFile.endswith(".py"):
+        try:
+            cogFile = f"cogs.{cogFile.replace('.py', '')}"
+            bot.load_extension(cogFile)
+        except Exception as e:
+            print(f"{cogFile} can not be loaded:")
+            raise e
 
 # Finally, authenticate with discord and let's get cracking.
 bot.run(TOKEN)

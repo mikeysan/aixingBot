@@ -2,14 +2,13 @@ import asyncio
 import datetime
 import discord
 from discord.ext import commands
-from discord.ext.commands import bot
 
 
 class remindMe(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @bot.command(case_insensitive = True, aliases = ["remind", "remindme", "remind_me"])
+    @commands.command(case_insensitive = True, aliases = ["remind", "remindme", "remind_me"])
     @commands.bot_has_permissions(attach_files = True, embed_links = True)
     async def reminder(ctx, time, *, reminder):
         print(time)
