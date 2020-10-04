@@ -6,9 +6,10 @@ import os
 import random
 import logging
 import datetime
+from itertools import cycle
 
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -24,6 +25,7 @@ handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w'
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
 
+
 # We are using the Bot API to interact with discord.
 # Assign "bot" to commands.Bot and set the commnd prefix to look for.
 # We have also set our commands to be case insensitive. this means $help or
@@ -32,16 +34,20 @@ bot = commands.Bot(command_prefix='$',
                    description="A support Bot for NLB Clan", 
                    case_insensitive=True)
 
+
+# Create a cycle of status changes.
+# This doesn't do much. It's just fun to have; something to play with in future
+status = cycle(['hating on D2', 'Thinking...', 'bathroom break', 'dumping on Apex', '$help'])
+
 # Create an event that takes the on_ready function
 # This will do a few things once our bot goes live
 @bot.event
 async def on_ready():
     '''
         Description: Gives the status of aixingBot when it becomes ready
+        and loads a footer block with additional notes and URL to gitHub
     '''
-    # Let's pretend the bot is playing the game of $help
-    game = discord.Game(name = "$help")
-    await bot.change_presence(status=discord.Status.idle, activity = game)
+    change_status.start()
     print("Bot is ready.")
 
     # Check that we are in the expected server.
@@ -75,6 +81,14 @@ async def on_ready():
         )
         # Send our embeded content to the channel.
         await channel.send(embed = embed)
+
+
+# Change status task
+@tasks.loop(hours=2)
+async def change_status():
+        # Let's pretend the bot is playing the game of $help
+        game = discord.Game(next(status))
+        await bot.change_presence(status=discord.Status.idle, activity = game)
 
 
 # Allow a user with admin role the ability to create a channel using our bot
