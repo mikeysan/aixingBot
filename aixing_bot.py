@@ -37,12 +37,12 @@ bot = commands.Bot(command_prefix='$',
 @bot.event
 async def on_ready():
     '''
-        Description:
+        Description: Gives the status of aixingBot when it becomes ready
     '''
     # Let's pretend the bot is playing the game of $help
-    # # TODO: Add a help function that displays all the other commands available
     game = discord.Game(name = "$help")
-    await bot.change_presence(activity = game)
+    await bot.change_presence(status=discord.Status.idle, activity = game)
+    print("Bot is ready.")
 
     # Check that we are in the expected server.
     for guild in bot.guilds:
@@ -110,6 +110,8 @@ async def treky(ctx):
         lines = f.readlines()
         response = random.choice(lines)
     await ctx.send(response)
+
+
 
 # Reload cogs
 @bot.command()
