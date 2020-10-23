@@ -21,9 +21,9 @@ jobs:
     # Step 2: run this sync action - specify the upstream repo, upstream branch to sync with, and target sync branch
     - name: Pull upstream changes
       id: sync
-      uses: bdougie/Fork-Sync-With-Upstream-action@fork
+      uses: mikeysan/Fork-Sync-With-Upstream-action@fork
       with:
-        upstream_repository: open-sauced/goals-template
+        upstream_repository: mikeysan/aixingBot
         upstream_branch: main
         target_branch: main                       # optional
         github_token: ${{ secrets.GITHUB_TOKEN }}   # optional, for accessing repos that requir authentication
