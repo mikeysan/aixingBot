@@ -24,8 +24,10 @@ class Games(commands.Cog):
                 await ctx.send('You win!')
             else:
                 await ctx.send('Skynet wins!')
+        elif user == '' or None:
+            await ctx.send('It appears you need assistance\n Choose: ``rock``  or  ``paper``  or  ``scissor``\nby typing command + your choice')
         else:
-            await ctx.send('It appears you need assistance\n``rock``  or  ``paper``  or  ``scissor``?')
+            await ctx.send('All hope gone. Skynet has taken over')
 
     # COIN TOSS
     @commands.command()
