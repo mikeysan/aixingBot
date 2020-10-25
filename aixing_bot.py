@@ -118,7 +118,7 @@ async def on_command_error(ctx, error):
 @bot.command(name='treky', help='Responds with random quote from Star Trek')
 async def treky(ctx):
     '''
-        Description:
+        Description: Responds with a random quote from star Trek
     '''
     with open("stquotes.txt", "r") as f:
         lines = f.readlines()
@@ -132,7 +132,7 @@ async def treky(ctx):
 @commands.is_owner()
 async def reload(ctx, cog):
     '''
-        Description:
+        Description: Reloads all Cog files
     '''
     try:
         bot.unload_extension(f"cogs.{cog}")
