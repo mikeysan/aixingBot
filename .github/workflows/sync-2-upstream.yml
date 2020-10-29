@@ -21,7 +21,7 @@ jobs:
     # Step 2: run this sync action - specify the upstream repo, upstream branch to sync with, and target sync branch
     - name: Pull upstream changes
       id: sync
-      uses: mikeysan/Fork-Sync-With-Upstream-action@v1
+      uses: mikeysan/Fork-Sync-With-Upstream-action@v2
       with:
         upstream_repository: mikeysan/aixingBot
         upstream_branch: main
