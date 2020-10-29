@@ -5,7 +5,7 @@
 
 ## Thinking of contributing?
 
-Please create an issue first detailing what features or improvements you wish to make. We would also ask that you stick to the PEP8 guildlines in your coding; e.g
+Please create an issue first detailing what features or improvements you wish to make. We would also ask that you please stick to the [PEP8 style guild](https://pep8.org/) in your coding; e.g.
 - DO ``` def something(arg1, arg2) ``` vs 
 - DO NOT ``` def something(arg1,arg2) ```
 - DO ``` users = something ``` vs 
