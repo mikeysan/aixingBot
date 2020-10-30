@@ -1,3 +1,6 @@
+########## DO NOT USE #########
+# THIS IS FROM A TUTORIAL AND NOT CURRENTLY PART OF THE BOT
+# IT DOESN'T WORK AS EXPECTED, SO I HAVE ONLY UPLOADED IT TO KEEP TRACK OF IT
 import asyncio
 import logging
 import random
