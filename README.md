@@ -4,7 +4,7 @@
 [![built-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 [![built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/mikeysan/)
 <p>
-<a href="https://raw.githubusercontent.com/Py-Contributors/awesomeScripts/master/LICENSE"><img src="https://img.shields.io/github/license/Py-Contributors/awesomeScripts?style=for-the-badge" alt="MIT license"></a>
+<a href="https://raw.githubusercontent.com/mikeysan/aixingBot/main/LICENSE"><img src="https://img.shields.io/github/license/Py-Contributors/awesomeScripts?style=for-the-badge" alt="MIT license"></a>
 </p>
  
  This is very much still a work in progress as it has been developed primarily as a learning tool (there is no harm in coming up with cool features and improvement, though).
