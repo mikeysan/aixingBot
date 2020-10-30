@@ -39,7 +39,7 @@ NOTE- It is recommended that you add your own discord token while running the bo
   ```
     pip install -r requirements.txt
   ```
-- Run the bot using: `python aixingBot.py`
+- Run the bot using: `python aixing_bot.py`
 - Enjoy! (don't forget to add your own bot into your discord server by generating an invite link from the discord developers application page in [OAuth2 section](https://discord.com/developers/applications/) and choose application and check Oauth2 section)
 
 
