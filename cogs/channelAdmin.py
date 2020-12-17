@@ -23,7 +23,7 @@ class ChannelAdmin(commands.Cog):
     # Add an error check to inform a user if they do not have permisison to run this command.
     # Normally, the error message is not shown to the user so there is no way for them to know why it didn't work
     # This event ensures that they know why.
-    @commands.event
+    @commands.Bot.event
     async def on_command_error(ctx, error):
         if isinstance(error, commands.errors.CheckFailure):
             await ctx.send('You do not have the correct role for this command.')
