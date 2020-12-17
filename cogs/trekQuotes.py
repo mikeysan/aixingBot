@@ -1,7 +1,6 @@
-import os
+import pathlib
 import random
 from discord.ext import commands
-import logging
 from discord.ext.commands import bot
 from discord.ext.commands.core import command
 
@@ -17,7 +16,8 @@ class treky(commands.Cog):
         '''
             Description: Responds with a random quote from star Trek
         '''
-        with open("stquotes.txt", "r") as f:
+        filepath = pathlib.Path(__file__).parent / 'stquotes.txt'
+        with open(filepath, "r") as f:
             lines = f.readlines()
             response = random.choice(lines)
         await ctx.send(response)
