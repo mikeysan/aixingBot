@@ -3,13 +3,13 @@
 # This is mostly a tutorial project for use on my discord server.
 
 import os
-import random
 import logging
 import datetime
 from itertools import cycle
 
 import discord
 from discord.ext import commands, tasks
+from discord.ext.commands import Context, CommandError
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -83,48 +83,20 @@ async def on_ready():
         await channel.send(embed = embed)
 
 
+async def on_command_error(self, ctx: Context, exception: CommandError) -> None:
+        """Fired when exception happens."""
+        logger.error(
+            "Exception happened while executing command",
+            exc_info=(type(exception), exception, exception.__traceback__)
+        )
+
+
 # Change status task
 @tasks.loop(hours=2)
 async def change_status():
         # Let's pretend the bot is playing the game of $help
         game = discord.Game(next(status))
         await bot.change_presence(status=discord.Status.idle, activity = game)
-
-
-# Allow a user with admin role the ability to create a channel using our bot
-# The bot also needs to have admin role assigned to it.
-# TODO: Assign aixing_bot admin role on server or find minimum permisison
-# TODO: needed to allow it create channels.
-@bot.command(name='create-channel', help='Create a channel using create-channel followed by channel name')
-@commands.has_role('admin')
-async def create_channel(ctx, channel_name='bot-chat'):
-    guild = ctx.guild
-    existing_channel = discord.utils.get(guild.channels, name=channel_name)
-    if not existing_channel:
-        print(f'Creating a new channel: {channel_name}')
-        await guild.create_text_channel(channel_name)
-
-# Add an error check to inform a user if they do not have permisison to run this command.
-# Normally, the error message is not shown to the user so there is no way for them to know why it didn't work
-# This event ensures that they know why.
-@bot.event
-async def on_command_error(ctx, error):
-    if isinstance(error, commands.errors.CheckFailure):
-        await ctx.send('You do not have the correct role for this command.')
-
-
-# This command reads from an external file.
-# It displays random quotes from Star Trek when the $treky command is called
-@bot.command(name='treky', help='Responds with random quote from Star Trek')
-async def treky(ctx):
-    '''
-        Description: Responds with a random quote from star Trek
-    '''
-    with open("stquotes.txt", "r") as f:
-        lines = f.readlines()
-        response = random.choice(lines)
-    await ctx.send(response)
-
 
 
 # Reload cogs
