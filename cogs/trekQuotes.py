@@ -1,6 +1,7 @@
 import os
 import random
 from discord.ext import commands
+import logging
 from discord.ext.commands import bot
 from discord.ext.commands.core import command
 
@@ -12,7 +13,7 @@ class treky(commands.Cog):
     # This command reads from an external file.
     # It displays random quotes from Star Trek when the $treky command is called
     @commands.command(name='treky', help='Responds with random quote from Star Trek')
-    async def treky(ctx):
+    async def treky(self, ctx):
         '''
             Description: Responds with a random quote from star Trek
         '''
