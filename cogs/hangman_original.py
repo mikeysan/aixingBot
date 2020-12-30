@@ -7,7 +7,7 @@ GitHub: https://www.github.com/mikeysan
 """
 
 import random
-from words import words
+from cogs.words import words
 import string
 
 
