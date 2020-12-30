@@ -3,13 +3,11 @@ from discord.ext import commands
 from discord.ext.commands import bot
 
 
-class Words(commands.Cog):
-    def __init__(self, words, bot):
+class WordsList(commands.Cog):
+    def __init__(self,bot):
         self.bot = bot
-        self.words = words
-
-
-        words = ["aback",
+        
+        self.words = ["aback",
                 "abaft",
                 "abandoned",
                 "abashed",
@@ -2657,4 +2655,4 @@ class Words(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Words(bot))
+    bot.add_cog(WordsList(bot))
