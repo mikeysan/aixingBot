@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import bot
 import random
-from cogs.words import words
+from cogs.words import Words
 import string
 # from time import sleep as delay
 
@@ -23,7 +23,7 @@ class hangmanGame(commands.Cog):
     #   ROCK PAPER SCISSOR
     @commands.command(name='Hangman', help='Play Hangman')
     async def hangman(self, ctx, player):
-        word = get_valid_word(words)
+        word = get_valid_word(Words)
         word_letters = set(word)  # letters in the word
         alphabet = set(string.ascii_uppercase)
         used_letters = set()  # what the user has guessed

@@ -4,8 +4,9 @@ from discord.ext.commands import bot
 
 
 class Words(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, words, bot):
         self.bot = bot
+        self.words = words
 
 
         words = ["aback",
