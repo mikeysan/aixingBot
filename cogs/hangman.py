@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import bot
 import random
-from cog.words import words
+from cogs.words import words
 import string
 # from time import sleep as delay
 
