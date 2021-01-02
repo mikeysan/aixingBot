@@ -4,8 +4,8 @@ from discord.ext import commands
 
 
 class MyList(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
+    def __init__(self):
+        # self.bot = bot
         self.wordsList = []
         
     def addWords(self, words):
