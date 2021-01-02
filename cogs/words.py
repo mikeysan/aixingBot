@@ -1994,4 +1994,4 @@ words = ["aback", "abaft", "abandoned", "abashed", "aberrant", "abhorrent",
 
 
 def setup(bot):
-    bot.add_cog(MyList(bot))
+    bot.add_cog(MyList())
