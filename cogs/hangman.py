@@ -2,15 +2,22 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import bot
 import random
-from cogs.words import WordsList as words
+from cogs.words import MyList
+from cogs.words import words
 import string
 # from time import sleep as delay
 
 
-def get_valid_word(words):
-        word = random.choice(words)  # randomly chooses something from the list
+word_list = MyList()
+for word in words:
+    word_list.addWords(word)
+
+allWords = word_list.wordsList
+
+def get_valid_word(allWords):
+        word = random.choice(allWords)  # randomly chooses something from the list
         while '-' in word or ' ' in word:
-            word = random.choice(words)
+            word = random.choice(allWords)
 
         return word.upper()
 
@@ -20,10 +27,10 @@ class hangmanGame(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    #   ROCK PAPER SCISSOR
+    #   Hangman Game
     @commands.command(name='Hangman', help='Play Hangman')
-    async def hangman(self, ctx, player):
-        word = get_valid_word(Words)
+    async def hangman(self, ctx):
+        word = get_valid_word(allWords)
         word_letters = set(word)  # letters in the word
         alphabet = set(string.ascii_uppercase)
         used_letters = set()  # what the user has guessed

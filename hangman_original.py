@@ -7,20 +7,32 @@ GitHub: https://www.github.com/mikeysan
 """
 
 import random
+from cogs.words import MyList
 from cogs.words import words
 import string
 
+glo = list(globals())
+for g in glo:
+    print(g)
 
-def get_valid_word(words):
-    word = random.choice(words)  # randomly chooses something from the list
+
+word_list = MyList()
+for word in words:
+    word_list.addWords(word)
+
+allWords = word_list.wordsList
+
+def get_valid_word(allWords):
+    # allWords = WordsList.words
+    word = random.choice(allWords)  # randomly chooses something from the list
     while '-' in word or ' ' in word:
-        word = random.choice(words)
+        word = random.choice(allWords)
 
     return word.upper()
 
 
 def hangman():
-    word = get_valid_word(words)
+    word = get_valid_word(allWords)
     word_letters = set(word)  # letters in the word
     alphabet = set(string.ascii_uppercase)
     used_letters = set()  # what the user has guessed
