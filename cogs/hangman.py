@@ -49,7 +49,7 @@ class hangmanGame(commands.Cog):
 
             # what current word is (ie W - R D)
             word_list = [letter if letter in used_letters else '-' for letter in word]
-            await ctx.send('Current word: ', ' '.join(word_list))
+            await ctx.send(f'Current word: {spc.join(word_list)}')
 
             # user_letter = input('Guess a letter: ').upper()
             await ctx.send('Guess a letter: ')
