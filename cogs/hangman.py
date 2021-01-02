@@ -55,8 +55,8 @@ class hangmanGame(commands.Cog):
 
             # user_letter = input('Guess a letter: ').upper()
             await ctx.send('Guess a letter: ')
-            uLetter = await self.bot.wait_for('message', check=lambda m: m.author == ctx.message.author)
-            user_letter = to_upper(uLetter)
+            user_letter = await self.bot.wait_for('message', check=lambda m: m.author == ctx.message.author)
+            # user_letter = to_upper(uLetter)
             if user_letter in alphabet - used_letters:
                 used_letters.add(user_letter)
                 if user_letter in word_letters:
