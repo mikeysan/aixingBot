@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-# from discord.ext.commands import bot
+from discord.ext.commands import bot
 import random
 from cogs.words import MyList
 from cogs.words import words
@@ -15,6 +15,7 @@ for word in words:
     word_list.addWords(word)
 
 allWords = word_list.wordsList
+
 
 def get_valid_word(allWords):
         word = random.choice(allWords)  # randomly chooses something from the list
