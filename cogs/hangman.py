@@ -25,6 +25,8 @@ def get_valid_word(allWords):
         return word.upper()
 
 
+def to_upper(argument):
+    return argument.upper()
 
 class hangmanGame(commands.Cog):
     def __init__(self, bot):
@@ -32,7 +34,7 @@ class hangmanGame(commands.Cog):
 
     #   Hangman Game
     @commands.command(name='Hangman', help='Play Hangman')
-    async def hangman(self, ctx):
+    async def hangman(self, ctx, user_letter: to_upper):
         word = get_valid_word(allWords)
         word_letters = set(word)  # letters in the word
         alphabet = set(string.ascii_uppercase)
@@ -53,8 +55,7 @@ class hangmanGame(commands.Cog):
 
             # user_letter = input('Guess a letter: ').upper()
             await ctx.send('Guess a letter: ')
-            user_letter = await self.bot.wait_for('message', check=lambda m: m.author == ctx.message.author)
-            user_letter.upper()
+            user_letter = await self.bot.wait_for('message', check=lambda m: m.author == ctx.message.author)                       
             if user_letter in alphabet - used_letters:
                 used_letters.add(user_letter)
                 if user_letter in word_letters:
