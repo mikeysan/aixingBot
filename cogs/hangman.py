@@ -34,7 +34,7 @@ class hangmanGame(commands.Cog):
 
     #   Hangman Game
     @commands.command(name='Hangman', help='Play Hangman')
-    async def hangman(self, ctx, user_letter: to_upper):
+    async def hangman(self, ctx):
         word = get_valid_word(allWords)
         word_letters = set(word)  # letters in the word
         alphabet = set(string.ascii_uppercase)
@@ -55,7 +55,8 @@ class hangmanGame(commands.Cog):
 
             # user_letter = input('Guess a letter: ').upper()
             await ctx.send('Guess a letter: ')
-            user_letter = await self.bot.wait_for('message', check=lambda m: m.author == ctx.message.author)                       
+            uLetter = await self.bot.wait_for('message', check=lambda m: m.author == ctx.message.author)
+            user_letter = to_upper(uLetter)
             if user_letter in alphabet - used_letters:
                 used_letters.add(user_letter)
                 if user_letter in word_letters:
