@@ -1,12 +1,13 @@
 import discord
 from discord.ext import commands
-# from discord.ext.commands import bot
+from discord.ext.commands import bot
 import random
+
 from cogs.words import MyList
 from cogs.words import words
 import string
-# from time import sleep as delay
 
+bot = commands.Bot
 
 # Get words list from MyList class in words.py file
 word_list = MyList()
@@ -53,7 +54,7 @@ class hangmanGame(commands.Cog):
 
             # user_letter = input('Guess a letter: ').upper()
             await ctx.send('Guess a letter: ')
-            user_letter = self.wait_for('message', check=lambda m: m.user == ctx.user).upper()
+            user_letter = bot.wait_for('message', check=lambda m: m.user == ctx.user).upper()
             if user_letter in alphabet - used_letters:
                 used_letters.add(user_letter)
                 if user_letter in word_letters:
