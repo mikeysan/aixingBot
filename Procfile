@@ -1,1 +1,1 @@
-worker: python aixing_bot.py
+worker: python3 aixing_bot.py
