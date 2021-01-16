@@ -16,13 +16,14 @@ class inspired(commands.Cog):
         self.bot = bot
     
     
-    async def on_message(self, ctx):
+    @commands.command(name='inspire', help='Responds with random quote from Star Trek')
+    async def inspire(self, ctx):
         if ctx.author == self.bot.user:
             return
         
         msg = ctx.content
 
-        if msg.startswith('$inspired'):
+        if msg.startswith('$inspire'):
             quote = get_quote()
             await ctx.channel.send(quote)
 
