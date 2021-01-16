@@ -22,6 +22,7 @@ class inspired(commands.Cog):
         if ctx.author == self.bot.user:
             return
         
+        quote = get_quote()
         await ctx.channel.send(quote)
 
         # if msg.startswith('$inspire'):
