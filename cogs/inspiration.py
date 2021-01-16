@@ -17,7 +17,7 @@ class inspired(commands.Cog):
         self.bot = bot
     
     
-    @commands.command(name='inspire', help='Responds with random quote from Star Trek')
+    @commands.command(name='inspire', help='Responds inspirational Quotes')
     async def inspire(self, ctx):
         if ctx.author == self.bot.user:
             return
