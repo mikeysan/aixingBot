@@ -11,13 +11,13 @@ def get_quote():
     return quote
 
 
-class inspired(commands.Cog):
+class inspired:
     def __init__(self, bot):
         self.bot = bot
     
-    @bot.event
+    
     async def on_message(self, message):
-        if message.author == bot.user:
+        if message.author == self.bot.user:
             return
         
         msg = message.content
