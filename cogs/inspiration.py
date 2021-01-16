@@ -16,7 +16,7 @@ class inspired(commands.Cog):
         self.bot = bot
     
     @bot.event
-    async def on_message(message):
+    async def on_message(self, message):
         if message.author == bot.user:
             return
         
