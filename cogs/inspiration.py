@@ -11,7 +11,7 @@ def get_quote():
     return quote
 
 
-class inspired:
+class inspired(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
