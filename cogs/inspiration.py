@@ -16,15 +16,15 @@ class inspired(commands.Cog):
         self.bot = bot
     
     
-    async def on_message(self, message):
-        if message.author == self.bot.user:
+    async def on_message(self, ctx):
+        if ctx.author == self.bot.user:
             return
         
-        msg = message.content
+        msg = ctx.content
 
-        if msg.startswith('$inspire'):
+        if msg.startswith('$inspired'):
             quote = get_quote()
-            await message.channel.send(quote)
+            await ctx.channel.send(quote)
 
 
 
