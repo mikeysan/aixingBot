@@ -1,5 +1,6 @@
 import os
 import discord
+from discord import message
 from discord.ext import commands
 import requests
 import json
@@ -21,7 +22,7 @@ class inspired(commands.Cog):
         if ctx.author == self.bot.user:
             return
         
-        msg = ctx.content
+        msg = message.content
 
         if msg.startswith('$inspire'):
             quote = get_quote()
