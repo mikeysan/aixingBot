@@ -1,5 +1,3 @@
-import os
-import discord
 from discord import message
 from discord.ext import commands
 import random
@@ -32,9 +30,11 @@ class encourage(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self,ctx):
-        if any(word in message.content for word in sad_words):
+        if any(word in ctx.message.content for word in sad_words):
             await self.bot.send("You said something sad!")
             await ctx.send(random.choice(starter_encouragements))
+        
+        
 
 
 def setup(bot):
