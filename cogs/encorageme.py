@@ -30,10 +30,10 @@ class encourage(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    
-    async def encouraging(self):
+    @commands.Cog.listener()
+    async def encouraging(self,ctx, message):
         if any(word in message.content for word in sad_words):
-            await self.bot.send(random.choice(starter_encouragements))
+            await ctx.send(random.choice(starter_encouragements))
 
 
 def setup(bot):
