@@ -57,7 +57,7 @@ class encourage(commands.Cog):
            our sad_words list.
         '''
 
-        if r.get("responding") == "True":
+        if r.get("responding"):
             options = starter_encouragements
             if "encouragements" in r.keys():
                 options = options + r["encouragements"]
@@ -68,14 +68,14 @@ class encourage(commands.Cog):
         
         # Add new entry into database
         if ctx.content.startswith("^new"):
-            encouraging_message = ctx.content.split("$new ", 1)[1]
+            encouraging_message = ctx.content.split("^new ", 1)[1]
             update_encouragements(encouraging_message)
             await ctx.channel.send("New encouraging message added")
         
         if ctx.content.startswith("^del"):
             encouragements = []
             if "encouragements" in r.keys():
-                index = int(ctx.content.split("$del",1)[1])
+                index = int(ctx.content.split("^del",1)[1])
                 delete_encouragements(index)
                 encouragements = r["encouragements"]
                 await ctx.channel.send(encouragements)
