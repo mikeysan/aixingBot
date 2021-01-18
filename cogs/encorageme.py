@@ -28,7 +28,7 @@ starter_encouragements = [
 ]
 
 if "responding" not in r.keys():
-    r["responding"] = True
+    r["responding"] = "True"
 
 def update_encouragements(encouraging_message):
     if "encouragements" in r.keys():
@@ -57,7 +57,7 @@ class encourage(commands.Cog):
            our sad_words list.
         '''
 
-        if r["responding"]:
+        if r["responding"] == "True":
             options = starter_encouragements
             if "encouragements" in r.keys():
                 options = options + r["encouragements"]
@@ -89,10 +89,10 @@ class encourage(commands.Cog):
             value = ctx.content.split("responding ", 1)[1]
 
             if value.lower() == "true":
-                r["responding"] = True
+                r["responding"] = "True"
                 await ctx.channel.send("Responding is on")
             else:
-                r["responding"] = False
+                r["responding"] = "False"
                 await ctx.channel.send("Responding is off")
 
 
