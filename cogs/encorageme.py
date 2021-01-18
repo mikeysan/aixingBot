@@ -57,7 +57,7 @@ class encourage(commands.Cog):
            our sad_words list.
         '''
 
-        if "True" in r["responding"]:
+        if r.get("responding") == "True":
             options = starter_encouragements
             if "encouragements" in r.keys():
                 options = options + r["encouragements"]
