@@ -31,7 +31,6 @@ class encourage(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self,ctx):
         if any(word in ctx.content for word in sad_words):
-            await self.bot.send("You said something sad!")
             await ctx.channel.send(random.choice(starter_encouragements))
         
         
