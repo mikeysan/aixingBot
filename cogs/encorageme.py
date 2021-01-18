@@ -33,13 +33,12 @@ if "responding" not in r.keys():
 def update_encouragements(encouraging_message):
     if "encouragements" in r.keys():
         encouragements = r["encouragements"]
-        encouragements.update(encouraging_message)
+        encouragements.append(encouraging_message)
         r["encouragements"] = encouragements
+        print(encouragements)
     else:
-        r["encouragements"] = encouraging_message
+        print(r["encouragements"])
     
-    return encouraging_message
-
 
 def delete_encouragements(index):
     encouragements = r["encouragements"]
