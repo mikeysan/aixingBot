@@ -30,12 +30,15 @@ class encourage(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self,ctx):
+        '''
+           Check if any of the words the users typed is part of
+           our sad_words list.
+        '''
         if any(word in ctx.content for word in sad_words):
+            # Send a word of encouragement if needed
             await ctx.channel.send(random.choice(starter_encouragements))
         
         
-
-
 def setup(bot):
     bot.add_cog(encourage(bot))
     print('---> Encouragements LOADED')
