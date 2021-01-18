@@ -81,10 +81,10 @@ class encourage(commands.Cog):
                 await ctx.channel.send(encouragements)
         
         if ctx.content.startswith("^list"):
-            db = []
+            encouragements = []
             if "encouragements" in r.keys():
-                db = r["encouragements"]
-            await ctx.channel.send(db)
+                encouragements = r["encouragements"]
+            await ctx.channel.send(encouragements)
 
         if ctx.content.startswith("^responding"):
             value = ctx.content.split("responding ", 1)[1]
