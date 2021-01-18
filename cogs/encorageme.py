@@ -27,6 +27,9 @@ starter_encouragements = [
     "Believe you can and you're halfway there."
 ]
 
+if "responding" not in r.keys():
+    r["responding"] = True
+
 def update_encouragements(encouraging_message):
     if "encouragements" in r.keys():
         encouragements = r["encouragements"]
@@ -34,7 +37,7 @@ def update_encouragements(encouraging_message):
         r["encouragrments"] = encouragements
     else:
         r["encouragements"] = encouraging_message
-        
+
 
 def delete_encouragements(index):
     encouragements = r["encouragements"]
@@ -54,28 +57,43 @@ class encourage(commands.Cog):
            our sad_words list.
         '''
 
-        options = starter_encouragements
-        if "encouragements" in r.keys():
-            options = options + r["encouragements"]
+        if r["responding"]:
+            options = starter_encouragements
+            if "encouragements" in r.keys():
+                options = options + r["encouragements"]
+            
+            if any(word in ctx.content for word in sad_words):
+                # Send a word of encouragement if needed
+                await ctx.channel.send(random.choice(options))
         
-        if any(word in ctx.content for word in sad_words):
-            # Send a word of encouragement if needed
-            await ctx.channel.send(random.choice(options))
-        
-        if ctx.content.startswith("$new"):
+        # Add new entry into database
+        if ctx.content.startswith("new"):
             encouraging_message = ctx.content.split("$new ", 1)[1]
             update_encouragements(encouraging_message)
             await ctx.channel.send("New encouraging message added")
         
-        if ctx.content.startswith("$del"):
+        if ctx.content.startswith("del"):
             encouragements = []
             if "encouragements" in r.keys():
                 index = int(ctx.content.split("$del",1)[1])
                 delete_encouragements(index)
                 encouragements = r["encouragements"]
                 await ctx.channel.send(encouragements)
+        
+        if ctx.content.startswith("list"):
+            db = []
+            if "encouragements" in r.keys():
+                db = r["encouragements"]
+            await ctx.channel.send(db)
+        if ctx.content.startswith("responding"):
+            value = ctx.content.split("responding ", 1)[1]
 
-
+            if value.lower() == "true":
+                r["responding"] = True
+                await ctx.channel.send("Responding is on")
+            else:
+                r["responding"] = False:
+                await ctx.channel.send("Responding is off")
 
 
 
