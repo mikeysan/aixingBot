@@ -34,7 +34,7 @@ def update_encouragements(encouraging_message):
     if "encouragements" in r.keys():
         encouragements = r["encouragements"]
         encouragements.append(encouraging_message)
-        r["encouragrments"] = encouragements
+        r["encouragements"] = encouragements
     else:
         r["encouragements"] = encouraging_message
     
