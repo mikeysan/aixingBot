@@ -92,7 +92,7 @@ class encourage(commands.Cog):
                 r["responding"] = True
                 await ctx.channel.send("Responding is on")
             else:
-                r["responding"] = False:
+                r["responding"] = False
                 await ctx.channel.send("Responding is off")
 
 
