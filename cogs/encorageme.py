@@ -33,7 +33,7 @@ if "responding" not in r.keys():
 def update_encouragements(encouraging_message):
     if "encouragements" in r.keys():
         encouragements = r["encouragements"]
-        encouragements.append(encouraging_message)
+        encouragements.update(encouraging_message)
         r["encouragements"] = encouragements
     else:
         r["encouragements"] = encouraging_message
