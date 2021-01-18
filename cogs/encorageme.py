@@ -37,6 +37,8 @@ def update_encouragements(encouraging_message):
         r["encouragrments"] = encouragements
     else:
         r["encouragements"] = encouraging_message
+    
+    return encouraging_message
 
 
 def delete_encouragements(index):
