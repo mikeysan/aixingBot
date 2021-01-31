@@ -40,7 +40,7 @@ jobs:
         DISCORD_BOT_TOKEN: foo
         MONGO_CONNECTION_STRING: bar
       run: |
-        python ./aixingBot/aixing_bot.py
+        python ./aixing_bot.py
     # - name: Test with pytest
       # run: |
         # pytest
