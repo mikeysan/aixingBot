@@ -44,9 +44,9 @@ class Moderation(commands.Cog):
     @commands.command()
     async def ban(ctx, user:discord.User=None, reason=None):
         if ctx.message.author.guild_permissions.ban_members:
-            if reason == None:
+            if reason is None:
                 reason = "An admin found your conduct goes against the benefit of our community!"
-            if user == None:
+            if user is None:
                 await ctx.send(f"Who do you want to ban?")
                 return
             try:
@@ -61,9 +61,9 @@ class Moderation(commands.Cog):
     @commands.command()
     async def kickout(ctx, user:discord.User=None ,reason=None):
         if ctx.message.author.guild_permissions.kick_members:
-            if reason == None:
+            if reason is None:
                 reason = "For conduct unbecoming of a member of our community!"
-            if user == None:
+            if user is None:
                 await ctx.send(f"Who do you want to kick?")
                 return
             try:
@@ -79,9 +79,9 @@ class Moderation(commands.Cog):
     @commands.command()
     async def unban(ctx, member=None, reason=None):
         if ctx.message.author.guild_permissions.ban_members:
-            if reason == None:
+            if reason is None:
                 reason = "Someone likes you!"
-            if member == None:
+            if member is None:
                 await ctx.send(f"Who would you like to unban?\nType in their ``username#id``")
                 return
             try:
